@@ -95,6 +95,7 @@ import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.kohsuke.github.GHMyself;
 import org.kohsuke.github.GHOrganization;
 import org.kohsuke.github.GHRepository;
+import org.kohsuke.github.GHRepositorySearchBuilder;
 import org.kohsuke.github.GHUser;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.github.HttpException;
@@ -977,7 +978,7 @@ public class GitHubSCMNavigator extends SCMNavigator {
                                     .println(GitHubConsoleNote.create(System.currentTimeMillis(), String.format(
                                             "Looking up repositories of myself %s", repoOwner
                                     )));
-                        for (GHRepository repo : myself.listRepositories(100)) {
+                        for (GHRepository repo : github.searchRepositories().q(repoQuery + " in:name user:" + repoOwner).list()) {
                             Connector.checkApiRateLimit(listener, github);
                             if (!repo.getOwnerName().equals(repoOwner)) {
                                 continue; // ignore repos in other orgs when using GHMyself
@@ -1008,7 +1009,8 @@ public class GitHubSCMNavigator extends SCMNavigator {
                     listener.getLogger().println(GitHubConsoleNote.create(System.currentTimeMillis(), String.format(
                             "Looking up repositories of organization %s", repoOwner
                     )));
-                    for (GHRepository repo : org.listRepositories(100)) {
+
+                    for (GHRepository repo : github.searchRepositories().q(repoQuery + " in:name org:" + repoOwner).list()) {
                         Connector.checkApiRateLimit(listener, github);
                         if (request.process(repo.getName(), sourceFactory, null, witness)) {
                             listener.getLogger()
@@ -1034,7 +1036,7 @@ public class GitHubSCMNavigator extends SCMNavigator {
                 if (user != null && repoOwner.equalsIgnoreCase(user.getLogin())) {
                     listener.getLogger().format("Looking up repositories of user %s%n%n", repoOwner);
                     Connector.checkApiRateLimit(listener, github);
-                    for (GHRepository repo : user.listRepositories(100)) {
+                    for (GHRepository repo : github.searchRepositories().q(repoQuery + "in:name user:" + repoOwner).list()) {
                         Connector.checkApiRateLimit(listener, github);
                         if (request.process(repo.getName(), sourceFactory, null, witness)) {
                             listener.getLogger()
