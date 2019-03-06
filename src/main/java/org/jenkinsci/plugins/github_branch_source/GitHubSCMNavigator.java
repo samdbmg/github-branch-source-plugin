@@ -114,6 +114,11 @@ public class GitHubSCMNavigator extends SCMNavigator {
     @NonNull
     private final String repoOwner;
     /**
+     * Query to limit the size of the returned repository list
+     */
+    @CheckForNull
+    private final String repoQuery;
+    /**
      * The API endpoint for the GitHub server.
      */
     @CheckForNull
@@ -211,11 +216,25 @@ public class GitHubSCMNavigator extends SCMNavigator {
      * Constructor.
      *
      * @param repoOwner the owner of the repositories to navigate.
+     * @param repoQuery the query to pass to the GitHub search API
      * @since 2.2.0
      */
     @DataBoundConstructor
+    public GitHubSCMNavigator(String repoOwner, String repoQuery) {
+        this.repoOwner = StringUtils.defaultString(repoOwner);
+        this.repoQuery = StringUtils.defaultString(repoQuery);
+        this.traits = new ArrayList<>();
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param repoOwner the owner of the repositories to navigate.
+     * @since 2.2.0
+     */
     public GitHubSCMNavigator(String repoOwner) {
         this.repoOwner = StringUtils.defaultString(repoOwner);
+        this.repoQuery = "";  // Blank string means "all"
         this.traits = new ArrayList<>();
     }
 
@@ -302,6 +321,14 @@ public class GitHubSCMNavigator extends SCMNavigator {
     @NonNull
     public String getRepoOwner() {
         return repoOwner;
+    }
+
+    /**
+     * Gets the query to limit repositories when searching
+     * @return The query string to pass to the GitHub search API
+     */
+    public String getRepoQuery() {
+        return repoQuery;
     }
 
     /**
