@@ -117,7 +117,7 @@ public class GitHubSCMNavigator extends SCMNavigator {
     /**
      * Query to limit the size of the returned repository list
      */
-    @CheckForNull
+    @NonNull
     private final String repoQuery;
     /**
      * The API endpoint for the GitHub server.
