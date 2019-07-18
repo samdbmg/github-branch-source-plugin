@@ -244,6 +244,7 @@ public class GitHubSCMNavigator extends SCMNavigator {
      *
      * @param apiUri                the API endpoint for the GitHub server.
      * @param repoOwner             the owner of the repositories to navigate.
+     * @param repoQuery             the search query to use for finding repositories.
      * @param scanCredentialsId     the credentials to use when accessing {@link #apiUri} (and also the default
      *                              credentials to use for checking out).
      * @param checkoutCredentialsId the credentials to use when checking out.
@@ -253,8 +254,8 @@ public class GitHubSCMNavigator extends SCMNavigator {
     @Deprecated
     @Restricted(DoNotUse.class)
     @RestrictedSince("2.2.0")
-    public GitHubSCMNavigator(String apiUri, String repoOwner, String scanCredentialsId, String checkoutCredentialsId) {
-        this(repoOwner);
+    public GitHubSCMNavigator(String apiUri, String repoOwner, String repoQuery, String scanCredentialsId, String checkoutCredentialsId) {
+        this(repoOwner, repoQuery);
         setCredentialsId(scanCredentialsId);
         setApiUri(apiUri);
         // legacy constructor means legacy defaults

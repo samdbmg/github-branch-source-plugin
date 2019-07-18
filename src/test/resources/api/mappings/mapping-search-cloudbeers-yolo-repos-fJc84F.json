@@ -1,0 +1,31 @@
+{
+  "request" : {
+    "url" : "/search/repositories/q=yolo+in:name+org:cloudbeers",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "bodyFileName" : "body-search-cloudbeers-yolo-repos-fJc84F.json",
+    "headers" : {
+      "Server" : "GitHub.com",
+      "Date" : "Thu, 18 Jul 2019 16:23:20 GMT",
+      "Content-Type" : "application/json; charset=utf-8",
+      "Transfer-Encoding" : "chunked",
+      "Status" : "200 OK",
+      "X-RateLimit-Limit" : "10",
+      "X-RateLimit-Remaining" : "9",
+      "X-RateLimit-Reset" : "1563467060",
+      "Cache-Control" : "no-cache",
+      "Vary" : "Accept-Encoding",
+      "X-GitHub-Media-Type" : "github.v3; format=json",
+      "Access-Control-Expose-Headers" : "ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type",
+      "Access-Control-Allow-Origin" : "*",
+      "Content-Security-Policy" : "default-src 'none'",
+      "Strict-Transport-Security" : "max-age=31536000; includeSubdomains; preload",
+      "X-Content-Type-Options" : "nosniff",
+      "X-Frame-Options" : "deny",
+      "X-XSS-Protection" : "1; mode=block",
+      "X-GitHub-Request-Id" : "D101:0531:AF13B0:D7CD1C:5D309CF8"
+    }
+  }
+}

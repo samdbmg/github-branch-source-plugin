@@ -140,7 +140,7 @@ public class GitHubSCMNavigatorTest {
                 get(urlMatching(".*")).atPriority(10).willReturn(aResponse().proxiedFrom("https://api.github.com/")));
         githubRaw.stubFor(get(urlMatching(".*")).atPriority(10)
                 .willReturn(aResponse().proxiedFrom("https://raw.githubusercontent.com/")));
-        navigator = new GitHubSCMNavigator("http://localhost:" + githubApi.port(), "cloudbeers", null, null);
+        navigator = new GitHubSCMNavigator("http://localhost:" + githubApi.port(), "cloudbeers", "yolo", null, null);
     }
 
     @Test

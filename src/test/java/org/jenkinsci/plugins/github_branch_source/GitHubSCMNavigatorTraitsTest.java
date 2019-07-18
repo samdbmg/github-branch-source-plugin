@@ -1564,6 +1564,7 @@ public class GitHubSCMNavigatorTraitsTest {
         GitHubSCMNavigator instance = new GitHubSCMNavigator(
                 null,
                 "cloudbeers",
+                "yolo",
                 "bcaef157-f105-407f-b150-df7722eab6c1",
                 "SAME"
         );
@@ -1597,6 +1598,7 @@ public class GitHubSCMNavigatorTraitsTest {
         GitHubSCMNavigator instance = new GitHubSCMNavigator(
                 "https://github.test/api/v3",
                 "cloudbeers",
+                "yolo",
                 "bcaef157-f105-407f-b150-df7722eab6c1",
                 "8b2e4f77-39c5-41a9-b63b-8d367350bfdf"
         );
@@ -1745,14 +1747,14 @@ public class GitHubSCMNavigatorTraitsTest {
 
     @Test
     public void given__legacyCode__when__checkoutCredentials_SAME__then__noTraitAdded() {
-        GitHubSCMNavigator instance = new GitHubSCMNavigator(null, "test", "scan", GitHubSCMSource.DescriptorImpl.SAME);
+        GitHubSCMNavigator instance = new GitHubSCMNavigator(null, "test", "test", "scan", GitHubSCMSource.DescriptorImpl.SAME);
         assertThat(instance.getCheckoutCredentialsId(), is(GitHubSCMNavigator.DescriptorImpl.SAME));
         assertThat(instance.getTraits(), not(Matchers.<SCMTrait<?>>hasItem(instanceOf(SSHCheckoutTrait.class))));
     }
 
     @Test
     public void given__legacyCode__when__checkoutCredentials_null__then__traitAdded_ANONYMOUS() {
-        GitHubSCMNavigator instance = new GitHubSCMNavigator(null, "test", "scan", null);
+        GitHubSCMNavigator instance = new GitHubSCMNavigator(null, "test", "test", "scan", null);
         assertThat(instance.getCheckoutCredentialsId(), is(GitHubSCMSource.DescriptorImpl.ANONYMOUS));
         assertThat(instance.getTraits(), Matchers.<SCMTrait<?>>hasItem(allOf(
                 instanceOf(SSHCheckoutTrait.class),
@@ -1762,7 +1764,7 @@ public class GitHubSCMNavigatorTraitsTest {
 
     @Test
     public void given__legacyCode__when__checkoutCredentials_value__then__traitAdded() {
-        GitHubSCMNavigator instance = new GitHubSCMNavigator(null, "test", "scan", "value");
+        GitHubSCMNavigator instance = new GitHubSCMNavigator(null, "test", "test", "scan", "value");
         assertThat(instance.getCheckoutCredentialsId(), is("value"));
         assertThat(instance.getTraits(), Matchers.<SCMTrait<?>>hasItem(allOf(
                 instanceOf(SSHCheckoutTrait.class),
@@ -1772,7 +1774,7 @@ public class GitHubSCMNavigatorTraitsTest {
 
     @Test
     public void given__legacyCode__when__checkoutCredentials_ANONYMOUS__then__traitAdded() {
-        GitHubSCMNavigator instance = new GitHubSCMNavigator(null, "test", "scan",
+        GitHubSCMNavigator instance = new GitHubSCMNavigator(null, "test", "test", "scan",
                 GitHubSCMSource.DescriptorImpl.ANONYMOUS);
         assertThat(instance.getCheckoutCredentialsId(), is(GitHubSCMSource.DescriptorImpl.ANONYMOUS));
         assertThat(instance.getTraits(), Matchers.<SCMTrait<?>>hasItem(allOf(
